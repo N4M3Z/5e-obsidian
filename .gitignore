@@ -2,3 +2,4 @@ out
 reference
 node_modules
 *.zip
+.idea
