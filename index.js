@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 
-const OUT_DIR = 'reference';
-const input = fs.readFileSync('./5e-srd-compiled-0-4-1.md', 'utf8');
+const OUT_DIR = 'output';
+const input = fs.readFileSync('./source/downloads/md/D&D 5E SRD Full Compile-v0.4.3.md', 'utf8');
 
 const inputLines = input.split('\n');
 
@@ -36,7 +36,7 @@ function clearFile() {
 }
 
 // Clear the `out/` dir and prepare output dirs
-fs.rmdirSync(path.join(__dirname, OUT_DIR), { recursive: true });
+fs.rmSync(path.join(__dirname, OUT_DIR), { recursive: true });
 fs.mkdirSync(path.join(__dirname, OUT_DIR, 'spells'), { recursive: true });
 fs.mkdirSync(path.join(__dirname, OUT_DIR, 'creatures'), { recursive: true });
 fs.mkdirSync(path.join(__dirname, OUT_DIR, 'items'), { recursive: true });
@@ -156,7 +156,3 @@ breakDownAlphebetizedFiles('Spells', 'spells', '####');
 breakDownAlphebetizedFiles('Creatures', 'creatures', '##');
 breakDownAlphebetizedFiles('Monsters', 'monsters', '##');
 breakDownAlphebetizedFiles('Magic Items', 'items', '###');
-
-// Remove some unused files
-fs.unlinkSync(path.join(__dirname, OUT_DIR, 'Miscellaneous Creatures\'.md'));
-fs.unlinkSync(path.join(__dirname, OUT_DIR, 'Non-Player Characters\'.md'));
